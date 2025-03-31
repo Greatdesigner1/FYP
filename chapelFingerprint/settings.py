@@ -13,15 +13,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from django.utils import timezone
 from pathlib import Path
 import dj_database_url
-import environ
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env(DEBUG=(bool, False))
+env = config('DEBUG')
 
-environ.Env.read_env(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -103,7 +102,7 @@ SIMPLE_JWT = {
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASE_URL = env("DATABASE_URL")
+DATABASE_URL = config("DATABASE_URL")
 
 DATABASES = {
     "default": dj_database_url.parse(
