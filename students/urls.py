@@ -5,9 +5,8 @@ from rest_framework.routers import DefaultRouter
 
 from students.views import SessionViewset, StudentsViewset
 
-
 router = DefaultRouter()
-router.register('', StudentsViewset)
+router.register('student', StudentsViewset)
 router.register('session', SessionViewset)
 
 

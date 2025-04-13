@@ -36,7 +36,8 @@ class Student(TimeStamp):
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     course = models.CharField(
         max_length=50, choices=Faculty.choices, default=Faculty.ARTS)
-    fingerprint = models.CharField(max_length=100, blank=True, null=True)
+    left_fingerprint = models.TextField(blank=True, null=True)
+    right_fingerprint = models.TextField(blank=True, null=True)
     chapel = models.ForeignKey(
         Chapel, on_delete=models.CASCADE, blank=True, null=True
     )
@@ -48,8 +49,8 @@ class Student(TimeStamp):
 class Session(TimeStamp):
 
     class Period(models.TextChoices):
-        LUNCH = "LUNCH", "Lunch"
-        DINNER = "DINNER", "Dinner"
+        MORNING = "MORNING", "Morning"
+        EVENING = "EVENING", "Evening"
 
     class Day(models.TextChoices):
         MONDAY = "MONDAY", "Monday"
@@ -64,9 +65,10 @@ class Session(TimeStamp):
     period = models.CharField(max_length=20, choices=Period.choices)
     chapel = models.ForeignKey(
         Chapel, on_delete=models.CASCADE, blank=True, null=True)
+    date = models.DateField(auto_now=True)
 
     class Meta:
-        unique_together = ("day", "period", "chapel")
+        unique_together = ['date','period',]
 
 
 class Attendance(TimeStamp):
