@@ -1,4 +1,5 @@
 import uuid
+from cloudinary_storage.storage import MediaCloudinaryStorage
 from django.db import models
 
 from users.models import GENDERS, LEVEL, TimeStamp
@@ -27,7 +28,7 @@ class Student(TimeStamp):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='photos/', blank=True, null=True)
+    photo = models.ImageField(upload_to='photos/', blank=True, null=True, storage=MediaCloudinaryStorage())
     matric_no = models.CharField(max_length=20, unique=True)
     gender = models.CharField(
         max_length=20, choices=GENDERS, null=False, blank=False, default="MALE"
