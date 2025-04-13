@@ -43,9 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
 
     'users',
-
+    'students',
     "rest_framework",
     "rest_framework_simplejwt",
 ]
@@ -77,6 +78,13 @@ TEMPLATES = [
         },
     },
 ]
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    },
+}
+
 
 WSGI_APPLICATION = 'chapelFingerprint.wsgi.application'
 
