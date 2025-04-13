@@ -164,6 +164,21 @@ class StudentsViewset(viewsets.ModelViewSet):
             })
 
         return Response(data, status=HTTP_200_OK)
+    
+    def destroy(self, request, *args, **kwargs):
+        matric_no = kwargs.get('matric_no')
+
+        if matric_no:
+            try:
+                matric_no = f'{matric_no[0:2]}/{matric_no[2:]}'  # adjust based on your real format
+            except IndexError:
+                return Response({"error": "Invalid matric_no format."}, status=400)
+
+        # Get and delete the student object
+        instance = get_object_or_404(Student, matric_no=matric_no)
+        instance.delete()
+        return Response(status=204)
+
 
 
 
