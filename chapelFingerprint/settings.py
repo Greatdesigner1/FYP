@@ -41,24 +41,30 @@ ALLOWED_HOSTS = ["localhost", ".render.com",
 # RENDER_EXTERNAL_HOSTNAME = config("RENDER_EXTERNAL_HOSTNAME")
 # ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME) if RENDER_EXTERNAL_HOSTNAME else []
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://adeleke-chapel-attendance.vercel.app/"
-    # "https://frontend.app",
-]
-CORS_ORIGIN_WHITELIST = (
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://localhost:8000",
-    "https://adeleke-chapel-attendance.vercel.app/"
-    # "https://frontend.app",
-)
+# CORS_ALLOWED_ORIGINS = [
+#     "*",
+#     "http://localhost:3000",
+#     "http://localhost:5173",
+#     "https://adeleke-chapel-attendance.vercel.app/",
+#     "https://frontend.app"
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ORIGIN_WHITELIST = (
+#     "*",
+#     # "http://localhost:3000",
+#     # "http://localhost:5173",
+#     # "http://localhost:8000",
+#     # "https://adeleke-chapel-attendance.vercel.app/"
+#     # "https://frontend.app",
+# )
 
 CSRF_TRUSTED_ORIGINS = [
-    # "https://frontend.app",
+    "https://frontend.app",
     "https://localhost:3000",
     "http://localhost:5173",
+    "http://localhost:5174",
     "https://adeleke-chapel-attendance.vercel.app/"
 ]
 
